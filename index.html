@@ -32,13 +32,12 @@
 
 <script type="text/python">
 from browser import document, html
-document['zone'] <= html.H1("Калькулятор расхода материалов")
 # Create the calc table
 calc = html.TABLE()
 
 # The display pad and C
 calc <= html.TR(html.TH(html.DIV("0", id="result"), colspan=3) +
-                html.TD("C"))
+                html.TD("C")) + html.H1("Калькулятор расхода материалов")
 
 # The number pad 
 lines = ["789/", "456*", "123-", "0.=+"]
