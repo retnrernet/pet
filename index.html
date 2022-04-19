@@ -36,8 +36,7 @@ from browser import document, html
 calc = html.TABLE()
 
 # The display pad and C
-calc <= html.TR(html.H1("Калькулятор расхода материалов") + html.TH(html.DIV("0", id="result"), colspan=3) +
-                html.TD("C"))
+calc <= html.TR(html.H1("Калькулятор расхода материалов") + "/n" + html.TH(html.DIV("0", id="result"), colspan=3)
 
 # The number pad 
 lines = ["789/", "456*", "123-", "0.=+"]
