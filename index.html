@@ -39,15 +39,6 @@ calc = html.TABLE()
 calc <= html.TR(html.H1("Калькулятор расхода материалов") + html.TH(html.DIV("0", id="result"), colspan=3) +
                 html.TD("C"))
 
-# The number pad 
-lines = ["789/", "456*", "123-", "0.=+"]
-
-calc <= (html.TR(html.TD(x) for x in line) for line in lines)
-
-# Add calc to the document
-document <= calc
-
-
 # Accessing the input numbers
 result = document["result"] # direct access to an element by its id
 
