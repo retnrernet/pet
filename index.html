@@ -42,6 +42,14 @@ calc <= html.TR(html.H1("Калькулятор расхода материал�
 # Accessing the input numbers
 result = document["result"] # direct access to an element by its id
 
+# The number pad 
+lines = ["789/", "456*", "123-", "0.=+"]
+
+calc <= (html.TR(html.TD(x) for x in line) for line in lines)
+
+# Add calc to the document
+document <= calc
+
 # Click Event Handler
 def action(event):
     """Handles the "click" event on a button of the calculator."""
