@@ -13,13 +13,13 @@ aud=st.sidebar.checkbox("Аудио", value=False)
 if filename:
   if pre:
     ffmpeg_command = ["ffmpeg", "-y", "-i", filename, "-s", "90x50","-crf","3","-preset","ultrafast","output.mp4"]
-    pipe = subprocess.run(ffmpeg_command, threaded=True, stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+    pipe = subprocess.run(ffmpeg_command, stdout=subprocess.PIPE,stderr=subprocess.PIPE)
     video_file = open("output.mp4", 'rb')
     video_bytes = video_file.read()
     st.sidebar.video(video_bytes)
   if aud:
     ffmpeg_command = ["ffmpeg", "-y", "-i", filename, "-vn", "output.mp3"]
-    pipe = subprocess.run(ffmpeg_command, threaded=True, stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+    pipe = subprocess.run(ffmpeg_command, stdout=subprocess.PIPE,stderr=subprocess.PIPE)
     video_file = open("output.mp3", 'rb')
     video_bytes = video_file.read()
     st.sidebar.audio(video_bytes)
