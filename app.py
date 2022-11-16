@@ -9,16 +9,26 @@ from moviepy.video.io.VideoFileClip import VideoFileClip,AudioFileClip
 from pathlib import Path
 filename = st.sidebar.text_input('Введи имя файла:') or st.sidebar.file_uploader("Выбери файл")
 pre=st.sidebar.checkbox("Проксировать", value=False)
+aud=st.sidebar.checkbox("Аудио", value=False)
 if filename:
   if pre:
     ffmpeg_command = ["ffmpeg", "-y", "-i", filename, "-s", "90x50","-crf","3","-preset","ultrafast","output.mp4"]
     pipe = subprocess.run(ffmpeg_command, threaded=True, stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+    video_file = open("output.mp4", 'rb')
+    video_bytes = video_file.read()
+    st.sidebar.video(video_bytes)
+  if aud:
+    ffmpeg_command = ["ffmpeg", "-y", "-i", filename, "-vn", "output.mp3"]
+    pipe = subprocess.run(ffmpeg_command, threaded=True, stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+    video_file = open("output.mp3", 'rb')
+    video_bytes = video_file.read()
+    st.sidebar.audio(video_bytes)
   else:
     ffmpeg_command = ["ffmpeg", "-y", "-i", filename, "-c", "copy", "-an","output.mp4"]
     pipe = subprocess.run(ffmpeg_command, stdout=subprocess.PIPE,stderr=subprocess.PIPE)
-  video_file = open("output.mp4", 'rb')
-  video_bytes = video_file.read()
-  st.sidebar.video(video_bytes)
+    video_file = open("output.mp4", 'rb')
+    video_bytes = video_file.read()
+    st.sidebar.video(video_bytes)
   data = mediainfo(filename)
   values = st.slider('Таймлайн',0.0, data['format']['duration'], (0.0, data['format']['duration']))
   if values:
