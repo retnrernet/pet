@@ -10,7 +10,6 @@ from bing_image_urls import bing_image_urls
 def captcha_handler(captcha):
   key = input("Enter captcha code {0}: ".format(captcha.get_url())).strip()
   return captcha.try_again(key)
-vk_session = vk_api.VkApi('+79045147622', 'J96274220j',captcha_handler=captcha_handler)
 vk_session.auth()
 vk = vk_session.get_api()
 a=["-67860517","-76456136"]
